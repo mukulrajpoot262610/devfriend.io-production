@@ -31,7 +31,7 @@ const Navbar = () => {
               </div>
             ) : (
               <div className="">
-                <button className="flex items-center text-xl outline-none font-semibold bg-seondary text-primary px-8 py-4 rounded-xl"><GithubOutlined />&nbsp;Login With gitHub</button>
+                <button className="flex items-center text-xl outline-none font-semibold bg-secondary-900 text-primary px-8 py-4 rounded-xl"><GithubOutlined />&nbsp;Login With gitHub</button>
               </div>
             )
           )

@@ -6,7 +6,10 @@ module.exports = {
     extend: {
       colors: {
         primary: '#fff',
-        seondary: '#2a2b2f',
+        secondary: {
+          100: '#F6FBFF',
+          900: '#2a2b2f'
+        },
         normal: {
           100: '#eff4ff',
           900: '#1890ff',
@@ -19,6 +22,9 @@ module.exports = {
           100: 'rgb(220, 20, 60, 0.1)',
           900: '#dc143c',
         },
+      },
+      height: {
+        half: '30vh'
       }
     },
   },

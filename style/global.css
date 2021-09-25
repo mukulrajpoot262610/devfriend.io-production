@@ -16,3 +16,12 @@ html {
     font-size: 50%;
   }
 }
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: #2a2b2f;
+}
