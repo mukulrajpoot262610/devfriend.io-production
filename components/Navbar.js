@@ -80,10 +80,6 @@ const Navbar = () => {
             </a>
           </Link>
         </div>
-        <div>
-          <h1>{"KEY " + process.env.NEXT_PUBLIC_FIREBASE_API_KEY}</h1>
-          {console.log('API_KEY', process.env.NEXT_PUBLIC_FIREBASE_API_KEY)}
-        </div>
         {
           loading ? <Spin /> : (
             isAuth ? (
