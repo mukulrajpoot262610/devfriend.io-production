@@ -24,7 +24,11 @@ module.exports = {
         },
       },
       height: {
-        half: '30vh'
+        half: '30vh',
+        card: '45rem',
+      },
+      width: {
+        card: '35rem'
       }
     },
   },
