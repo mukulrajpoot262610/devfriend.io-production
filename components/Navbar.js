@@ -80,6 +80,9 @@ const Navbar = () => {
             </a>
           </Link>
         </div>
+        <div>
+          <h1 className="font-bold">Made with ❤ by Mukul Rajpoot</h1>
+        </div>
         {
           loading ? <Spin /> : (
             isAuth ? (
