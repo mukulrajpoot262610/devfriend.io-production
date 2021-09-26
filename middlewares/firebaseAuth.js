@@ -1,6 +1,6 @@
-const admin = require('../config/index')
-const User = require('../models/UserModel')
-const Profile = require('../models/profileModel')
+import admin from '../config/index'
+import User from '../models/UserModel'
+import Profile from '../models/profileModel'
 
 const firebaseAuth = async (req, res, next) => {
     try {

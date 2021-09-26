@@ -21,7 +21,7 @@ export default function Home() {
 
       <div className="mt-20 w-full py-20 flex flex-col justify-center items-center">
         <h2 className="font-bold text-6xl">🚀 How DevFriend.io Works ? 🚀</h2>
-        <div className="flex flex-wrap my-20">
+        <div className="flex flex-wrap my-20 justify-center items-center">
           {
             STEPS_DATA.map((e) => <StepCover data={e} key={e.id} />)
           }
@@ -29,8 +29,8 @@ export default function Home() {
       </div>
 
       <div className="mt-20 w-full py-20 flex flex-col justify-center items-center">
-        <h2 className="font-bold text-6xl">🚀 Find Your Challenge and Start Building 🚀</h2>
-        <div className="flex flex-wrap my-20">
+        <h2 className="font-bold text-6xl text-center leading-normal">🚀 Find Your Challenge and Start Building 🚀</h2>
+        <div className="flex flex-wrap my-20 justify-center items-center">
           {
             STEPS_DATA.map((e) => <StepCover data={e} key={e.id} />)
           }
@@ -39,8 +39,8 @@ export default function Home() {
       </div>
 
       <div className="mt-20 w-full py-20 flex flex-col justify-center items-center">
-        <h2 className="font-bold text-6xl">🚀 Find Your Coding Partener and Start Building 🚀</h2>
-        <div className="flex flex-wrap my-20">
+        <h2 className="font-bold text-6xl text-center leading-normal">🚀 Find Your Coding Partener and Start Building 🚀</h2>
+        <div className="flex flex-wrap my-20 justify-center items-center">
           {
             STEPS_DATA.map((e) => <StepCover data={e} key={e.id} />)
           }

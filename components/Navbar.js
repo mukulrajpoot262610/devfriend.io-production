@@ -1,11 +1,72 @@
 import React, { useState } from 'react'
-import { message, Spin, Badge } from 'antd';
-import { BellOutlined, TeamOutlined, GithubOutlined } from '@ant-design/icons'
+import { message, Spin, Badge, Menu, Dropdown } from 'antd';
+import { BellOutlined, TeamOutlined, GithubOutlined, UserOutlined, DashboardOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons'
+import { useSelector, useDispatch } from 'react-redux'
+import firebase from '../config/firebase';
 
 const Navbar = () => {
 
-  const [loading, setLoading] = useState(false) //STATE
-  const [isAuth, setIsAuth] = useState(false) //STATE
+  const dispatch = useDispatch()
+
+  const isAuth = useSelector(state => state.currentUser.isAuth)
+  const loading = useSelector(state => state.currentUser.loading)
+  const userData = useSelector(state => state.currentUser.userData)
+  const userProfile = useSelector(state => state.currentProfile.profileData)
+
+  console.log('DATA', userData)
+  console.log('PROFILE', userProfile)
+
+  const handleLogout = async () => {
+    await firebase.auth().signOut()
+    dispatch({
+      type: 'USER_LOGOUT'
+    })
+    window.location.reload()
+    message.success('Logged Out Successfully 🎉')
+  }
+
+  const handleLogin = async () => {
+    await firebase.auth().signInWithPopup(new firebase.auth.GithubAuthProvider())
+      .then(user => {
+        if (user.additionalUserInfo.isNewUser === true) {
+          message.success(`Welcome 🎉 ${user.additionalUserInfo.profile.name}`)
+        } else {
+          message.success(`Welcome Back 🎉 ${user.additionalUserInfo.profile.name}`)
+        }
+      }).catch(err => console.log(err.message))
+  }
+
+  const menu = (
+    <Menu className="w-72 px-4">
+      <Menu.Item key="0">
+        <div className="flex items-center justify-between my-4">
+          <p className="font-semibold">My Profile</p>
+          <UserOutlined />
+        </div>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="1">
+        <div className="flex items-center justify-between my-4">
+          <p className="font-semibold">Dashboard</p>
+          <DashboardOutlined />
+        </div>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="3">
+        <div className="flex items-center justify-between my-4">
+          <p className="font-semibold">Setting</p>
+          <SettingOutlined />
+        </div>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="4">
+        <div className="flex items-center justify-between my-4" onClick={handleLogout}>
+          <p className="font-semibold">LogOut</p>
+          <LogoutOutlined />
+        </div>
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <div className="fixed top-0 h-24 w-full px-8 md:px-20 backdrop-blur flex items-center justify-center">
@@ -27,11 +88,13 @@ const Navbar = () => {
                 <Badge count={2} className="mx-4 cursor-pointer">
                   <BellOutlined className="text-4xl" />
                 </Badge>
-                <img src='/man.png' alt="" className="h-16 mx-8 rounded-full cursor-pointer" />
+                <Dropdown overlay={menu} trigger={['click']}>
+                  <img src={userData ? userData.avatar : '/man.png'} alt="" className="h-16 mx-8 rounded-full cursor-pointer" />
+                </Dropdown>
               </div>
             ) : (
               <div className="">
-                <button className="flex items-center text-xl outline-none font-semibold bg-secondary-900 text-primary px-8 py-4 rounded-xl"><GithubOutlined />&nbsp;Login With gitHub</button>
+                <button className="flex items-center text-xl outline-none font-semibold bg-secondary-900 text-primary px-8 py-4 rounded-xl" onClick={handleLogin}><GithubOutlined />&nbsp;Login With gitHub</button>
               </div>
             )
           )
