@@ -1,12 +1,13 @@
 import nc from 'next-connect'
 import connectDB from '../../../config/db';
 
-import { getAllUser } from '../../../controllers/userController'
+import { GetProfile } from '../../../controllers/profileController'
 
 const handler = nc();
 
 connectDB();
 
-handler.get(getAllUser)
+handler.get(GetProfile)
+
 
 export default handler
