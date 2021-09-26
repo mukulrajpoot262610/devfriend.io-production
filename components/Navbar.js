@@ -81,7 +81,8 @@ const Navbar = () => {
           </Link>
         </div>
         <div>
-          <h1>{process.env.REACT_APP_FIREBASE_API_KEY}</h1>
+          <h1>{"KEY " + process.env.REACT_APP_FIREBASE_API_KEY}</h1>
+          {console.log('API_KEY', process.env.REACT_APP_FIREBASE_API_KEY)}
         </div>
         {
           loading ? <Spin /> : (
