@@ -37,10 +37,12 @@ const Navbar = () => {
   const menu = (
     <Menu className="w-72 px-4">
       <Menu.Item key="0">
-        <div className="flex items-center justify-between my-4">
-          <p className="font-semibold">My Profile</p>
-          <UserOutlined />
-        </div>
+        <Link href={`/user/${userProfile._id}`}>
+          <div className="flex items-center justify-between my-4">
+            <p className="font-semibold">My Profile</p>
+            <UserOutlined />
+          </div>
+        </Link>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="1">
@@ -63,7 +65,7 @@ const Navbar = () => {
           <LogoutOutlined />
         </div>
       </Menu.Item>
-    </Menu>
+    </Menu >
   );
 
   return (

@@ -137,8 +137,52 @@ const UserDetail = () => {
                 </div>
               </div>
 
-              <div className="bg-normal-900 w-full h-half">
-
+              {/* PROFILE */}
+              <div className="w-full flex flex-col md:flex-row">
+                <div className="h-full w-full md:w-2/3 p-4">
+                  {/* LEFT */}
+                  <div className="bg-normal-100 rounded-2xl p-8 my-4">
+                    <h1 className="font-bold text-3xl mb-4">About</h1>
+                    <hr />
+                    <p className="text-2xl my-4">{userProfile.about}</p>
+                  </div>
+                  <div className="bg-normal-100 rounded-2xl p-8 my-4">
+                    <h1 className="font-bold text-3xl mb-4">GitHub Stats</h1>
+                    <hr />
+                    <p className="text-2xl my-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique porro praesentium sunt vitae minus inventore necessitatibus? Fugit facilis ut reiciendis consequatur! Expedita atque dolorum dolor, praesentium iure enim optio repudiandae!</p>
+                  </div>
+                  <div className="bg-normal-100 rounded-2xl p-8 my-4">
+                    <h1 className="font-bold text-3xl mb-4">Best Projects</h1>
+                    <hr />
+                    <p className="text-2xl my-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique porro praesentium sunt vitae minus inventore necessitatibus? Fugit facilis ut reiciendis consequatur! Expedita atque dolorum dolor, praesentium iure enim optio repudiandae!</p>
+                  </div>
+                </div>
+                <div className=" h-full w-full md:w-1/3 p-4">
+                  {/* RIGHT */}
+                  <div className="bg-normal-100 rounded-2xl p-8 my-4">
+                    <h1 className="font-bold text-3xl mb-4">Info</h1>
+                    <hr />
+                    <div className="flex justify-center items-center">
+                      <div className="flex flex-col justify-center items-center bg-primary w-full p-8 rounded-2xl m-4">
+                        <p className="text-4xl font-extrabold">{userProfile.collegeYear}</p>
+                        <p className="font-medium uppercase mt-2">Year</p>
+                      </div>
+                      <div className="flex flex-col justify-center items-center bg-primary w-full p-8 rounded-2xl m-4">
+                        <p className="text-4xl font-extrabold">{userProfile.stack}</p>
+                        <p className="font-medium uppercase mt-2">Stack</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-normal-100 rounded-2xl p-8 my-4">
+                    <h1 className="font-bold text-3xl mb-4">Skills</h1>
+                    <hr />
+                    <div className="flex flex-wrap justify-start items-center my-4">
+                      {
+                        userProfile.skill.map((e, i) => <h1 key={i} className="bg-info-100 font-bold p-4 px-8 m-2 rounded-2xl border border-info-900">{e}</h1>)
+                      }
+                    </div>
+                  </div>
+                </div>
               </div>
             </>
           ) : (
