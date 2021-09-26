@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Link from 'next/link'
 import { message, Spin, Badge, Menu, Dropdown } from 'antd';
 import { BellOutlined, TeamOutlined, GithubOutlined, UserOutlined, DashboardOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons'
 import { useSelector, useDispatch } from 'react-redux'
@@ -12,9 +13,6 @@ const Navbar = () => {
   const loading = useSelector(state => state.currentUser.loading)
   const userData = useSelector(state => state.currentUser.userData)
   const userProfile = useSelector(state => state.currentProfile.profileData)
-
-  console.log('DATA', userData)
-  console.log('PROFILE', userProfile)
 
   const handleLogout = async () => {
     await firebase.auth().signOut()
@@ -69,14 +67,18 @@ const Navbar = () => {
   );
 
   return (
-    <div className="fixed top-0 h-24 w-full px-8 md:px-20 backdrop-blur flex items-center justify-center">
+    <div className="fixed z-50 top-0 h-24 w-full px-8 md:px-20 backdrop-blur flex items-center justify-center">
       <div className="w-full mx-auto flex items-center justify-between">
         <div className="flex items-center">
-          <img src="/logo.png" alt="Logo" className="h-16" />
-          <div className="mx-4">
-            <h1 className="text-2xl font-black">DEV<span className="text-info-900">Friend</span>.io</h1>
-            <h4 className="font-semibold text-sm">By Mukul Rajpoot</h4>
-          </div>
+          <Link href="/">
+            <a className="flex items-center">
+              <img src="/logo.png" alt="Logo" className="h-16 cursor-pointer" />
+              <div className="mx-4">
+                <h1 className="text-2xl font-black cursor-pointer">DEV<span className="text-info-900">Friend</span>.io</h1>
+                <h4 className="font-semibold text-sm cursor-pointer">By Mukul Rajpoot</h4>
+              </div>
+            </a>
+          </Link>
         </div>
         {
           loading ? <Spin /> : (
