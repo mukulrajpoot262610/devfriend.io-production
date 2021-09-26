@@ -80,6 +80,9 @@ const Navbar = () => {
             </a>
           </Link>
         </div>
+        <div>
+          <h1>{process.env.REACT_APP_FIREBASE_API_KEY}</h1>
+        </div>
         {
           loading ? <Spin /> : (
             isAuth ? (
