@@ -50,7 +50,6 @@ const UserDetail = () => {
     }
   }
 
-  console.log("PROFILE", userProfile)
 
   useEffect(() => {
     id && fetchProfile()
@@ -154,7 +153,11 @@ const UserDetail = () => {
                   <div className="bg-normal-100 rounded-2xl p-8 my-4">
                     <h1 className="font-bold text-3xl mb-4">About</h1>
                     <hr />
-                    <p className="text-2xl my-4">{userProfile.about}</p>
+                    <p className="text-2xl my-4">
+                      <ReactMarkdown>
+                        {userProfile.about}
+                      </ReactMarkdown>
+                    </p>
                   </div>
                   <div className="bg-normal-100 rounded-2xl p-8 my-4">
                     <h1 className="font-bold text-3xl mb-4">GitHub Stats</h1>
