@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { message, Spin, Badge, Menu, Dropdown } from 'antd';
 import { BellOutlined, TeamOutlined, GithubOutlined, UserOutlined, DashboardOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons'
 import { useSelector, useDispatch } from 'react-redux'
@@ -7,6 +8,7 @@ import firebase from '../config/firebase';
 
 const Navbar = () => {
 
+  const router = useRouter()
   const dispatch = useDispatch()
 
   const isAuth = useSelector(state => state.currentUser.isAuth)
@@ -28,6 +30,7 @@ const Navbar = () => {
       .then(user => {
         if (user.additionalUserInfo.isNewUser === true) {
           message.success(`Welcome 🎉 ${user.additionalUserInfo.profile.name}`)
+          router.push('/user/edit')
         } else {
           message.success(`Welcome Back 🎉 ${user.additionalUserInfo.profile.name}`)
         }
@@ -53,10 +56,12 @@ const Navbar = () => {
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="3">
-        <div className="flex items-center justify-between my-4">
-          <p className="font-semibold">Setting</p>
-          <SettingOutlined />
-        </div>
+        <Link href={`/user/edit`}>
+          <div className="flex items-center justify-between my-4">
+            <p className="font-semibold">Setting</p>
+            <SettingOutlined />
+          </div>
+        </Link>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="4">
@@ -65,7 +70,7 @@ const Navbar = () => {
           <LogoutOutlined />
         </div>
       </Menu.Item>
-    </Menu >
+    </Menu>
   );
 
   return (

@@ -21,11 +21,14 @@ const UserDetail = () => {
 
   const githubUsername = userProfile && userProfile.github.split('/')[3]
 
-  const markdown = `[![GitHub stats](https://github-readme-stats.vercel.app/api?username=${githubUsername}&count_private=true&show_icons=true&show_owner=true)](https://github.com/${githubUsername}/github-readme-stats)`
+  const markdown = `[![GitHub stats](https://github-readme-stats.vercel.app/api?username=${githubUsername}&count_private=true&show_icons=true&show_owner=true)](https://github.com/${githubUsername})`
 
-  const pinsRepo = `[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=${githubUsername})](https://github.com/${githubUsername}/github-readme-stats)`
+  const topLang = `[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=${githubUsername})](https://github.com/${githubUsername})`
 
-  const WakaTime = `[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=${githubUsername})](https://github.com/${githubUsername}/github-readme-stats)
+  const WakaTime = `[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=${githubUsername})](https://github.com/${githubUsername})
+`
+
+  const pinsRepo = `[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=${githubUsername}&repo=portfolio-2021)](https://github.com/${githubUsername})
 `
 
   const fetchProfile = async () => {
@@ -174,14 +177,18 @@ const UserDetail = () => {
                     </p>
                     <p className="text-2xl my-4">
                       <ReactMarkdown>
-                        {pinsRepo}
+                        {topLang}
                       </ReactMarkdown>
                     </p>
                   </div>
                   <div className="bg-normal-100 rounded-2xl p-8 my-4">
                     <h1 className="font-bold text-3xl mb-4">Best Projects</h1>
                     <hr />
-                    <p className="text-2xl my-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique porro praesentium sunt vitae minus inventore necessitatibus? Fugit facilis ut reiciendis consequatur! Expedita atque dolorum dolor, praesentium iure enim optio repudiandae!</p>
+                    <p className="text-2xl my-4">
+                      <ReactMarkdown>
+                        {pinsRepo}
+                      </ReactMarkdown>
+                    </p>
                   </div>
                 </div>
                 <div className=" h-full w-full md:w-1/3 p-4">

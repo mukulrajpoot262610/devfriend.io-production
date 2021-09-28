@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 const FirebaseAuthState = ({ children }) => {
 
     const dispatch = useDispatch()
+
     useEffect(() => {
         return firebase.auth().onIdTokenChanged(async (user) => {
             if (!user) {
