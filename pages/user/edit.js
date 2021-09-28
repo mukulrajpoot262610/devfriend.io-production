@@ -3,12 +3,14 @@ import Head from 'next/head'
 import { Form, Steps, message, Input, Button, Spin, Select, Space } from 'antd';
 import { UserOutlined, LinkedinOutlined, SmileOutlined, MinusCircleOutlined, PlusOutlined, TwitterOutlined, LinkOutlined, FacebookOutlined, GithubOutlined, SolutionOutlined } from '@ant-design/icons';
 
+import ProfileView from '../../components/ProfileView'
+
 const edit = () => {
 
   const { Step } = Steps;
   const { TextArea } = Input;
 
-  const [formStep, setFormStep] = useState(1)
+  const [formStep, setFormStep] = useState(0)
   const [data, setData] = useState({
     name: "",
     headline: "",
@@ -51,7 +53,7 @@ const edit = () => {
   };
 
   const onFinish = (values) => {
-    console.log(values)
+    message.success('Success')
     next()
   }
 
@@ -67,10 +69,9 @@ const edit = () => {
   };
 
   const handleSubmit = (e) => {
+    message.success('Form Submitted Successfully')
     console.log(data)
   }
-
-  console.log(data)
 
   return (
     <div className="flex flex-col items-center min-h-screen p-8">
@@ -93,10 +94,6 @@ const edit = () => {
               ))
             }
           </Steps>
-        </div>
-
-        <div className="my-8 md:hidden">
-          <h1 className="font-semibold text-3xl">Personal</h1>
         </div>
 
         <div className="w-full my-8">
@@ -264,20 +261,14 @@ const edit = () => {
 
           {/* FORM 4 */}
           {formStep === 3 &&
-            <section className="flex flex-col justify-center md:flex-row">
-              {/* LEFT */}
-              <div className="h-full w-full md:w-1/3 p-4">
-                <Button type="secondary" className="mr-8" onClick={prev}>
-                  Previuos
-                </Button>
-                <Button type="primary" onClick={handleSubmit}>
-                  Submit
-                </Button>
-              </div>
-
-              {/* RIGHT */}
-              <div className="h-full w-full md:w-1/3 p-4">
-              </div>
+            <section className="">
+              <ProfileView data={data} />
+              <Button type="secondary" className="mr-8" onClick={prev}>
+                Previuos
+              </Button>
+              <Button type="primary" onClick={handleSubmit}>
+                Submit
+              </Button>
             </section>
           }
         </div>
