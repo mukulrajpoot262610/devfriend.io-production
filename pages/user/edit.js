@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
 import { Form, Steps, message, Input, Button, Spin, Select, Space } from 'antd';
-import { UserOutlined, LinkedinOutlined, SmileOutlined, TwitterOutlined, LinkOutlined, FacebookOutlined, GithubOutlined, } from '@ant-design/icons';
+import { UserOutlined, LinkedinOutlined, SmileOutlined, MinusCircleOutlined, PlusOutlined, TwitterOutlined, LinkOutlined, FacebookOutlined, GithubOutlined, SolutionOutlined } from '@ant-design/icons';
 
 const edit = () => {
 
   const { Step } = Steps;
   const { TextArea } = Input;
 
-  const [formStep, setFormStep] = useState(0)
+  const [formStep, setFormStep] = useState(1)
   const [data, setData] = useState({
     name: "",
     headline: "",
@@ -30,6 +30,10 @@ const edit = () => {
       icon: <UserOutlined />
     },
     {
+      title: 'Projects',
+      icon: <SolutionOutlined />
+    },
+    {
       title: 'Social',
       icon: <GithubOutlined />
     },
@@ -46,7 +50,8 @@ const edit = () => {
     setFormStep(formStep - 1);
   };
 
-  const onFinish = () => {
+  const onFinish = (values) => {
+    console.log(values)
     next()
   }
 
@@ -64,6 +69,8 @@ const edit = () => {
   const handleSubmit = (e) => {
     console.log(data)
   }
+
+  console.log(data)
 
   return (
     <div className="flex flex-col items-center min-h-screen p-8">
@@ -156,6 +163,50 @@ const edit = () => {
 
           {/* FORM 2 */}
           {formStep === 1 &&
+            <Form name="dynamic_form_nest_item" onFinish={onFinish} autoComplete="off">
+              <section className="flex flex-col justify-center md:flex-row">
+                {/* LEFT */}
+                <div className="h-full w-full md:w-1/3 p-4">
+                  <Form.List name="users">
+                    {(fields, { add, remove }) => (
+                      <>
+                        {fields.map(({ key, name, fieldKey, ...restField }) => (
+                          <Space key={key} className="w-full flex justify-center items-center">
+                            <div className="border p-8 w-full my-4">
+                              <h1 className="my-4 font-medium">Project {key + 1}</h1>
+                              <div className="flex items-center w-full">
+                                <Input size="large" name={`project${key + 1}`} value={data[`project${key + 1}`]} onChange={handleChange} prefix={<GithubOutlined />} className="mx-4 w-full" required />
+                                <MinusCircleOutlined onClick={() => remove(name)} />
+                              </div>
+                            </div>
+                          </Space>
+                        ))}
+
+                        <Form.Item>
+                          <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                            Add field
+                          </Button>
+                        </Form.Item>
+                      </>
+                    )}
+                  </Form.List>
+                  <Button type="secondary" className="mr-8" onClick={prev}>
+                    Previuos
+                  </Button>
+                  <Button type="primary" htmlType="submit">
+                    Next
+                  </Button>
+                </div>
+
+                {/* RIGHT */}
+                <div className="h-full w-full flex justify-end md:w-1/3 p-4">
+                </div>
+              </section>
+            </Form>
+          }
+
+          {/* FORM 3 */}
+          {formStep === 2 &&
             <Form
               name="basic"
               initialValues={{
@@ -211,8 +262,8 @@ const edit = () => {
             </Form>
           }
 
-          {/* FORM 3 */}
-          {formStep === 2 &&
+          {/* FORM 4 */}
+          {formStep === 3 &&
             <section className="flex flex-col justify-center md:flex-row">
               {/* LEFT */}
               <div className="h-full w-full md:w-1/3 p-4">
@@ -231,7 +282,7 @@ const edit = () => {
           }
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 
